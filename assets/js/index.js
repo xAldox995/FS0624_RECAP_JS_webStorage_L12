@@ -1,3 +1,16 @@
+const cronometro = document.getElementById('cronometro');
+
+let seconds = parseInt(sessionStorage.getItem('seconds') || 0);
+
+const updateCronometro = () => {
+    cronometro.innerText = `Tempo trascorso: ${seconds} secondi`;
+    sessionStorage.setItem('seconds', seconds);
+    seconds++;
+}
+
+setInterval(updateCronometro, 1000);
+updateCronometro();
+
 const inputName = document.querySelector('input');
 const addButton = document.getElementById('addName');
 const delButton = document.getElementById('delName');
@@ -22,7 +35,7 @@ function delName(event) {
 }
 
 function renderNameList() {
-    nameList.innerHTML = '';    
+    nameList.innerHTML = '';
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         const li = document.createElement('li');
